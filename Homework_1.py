@@ -8,8 +8,7 @@ def parse(query: str) -> dict:
         if words[-1] == '':
             words.pop()
         return {words[i]: words[i + 1] for i in range(0, len(words), 2)}
-    else:
-        return {}
+    return {}
 
 
 if __name__ == '__main__':
