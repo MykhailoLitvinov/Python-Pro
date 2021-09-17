@@ -19,5 +19,3 @@ if __name__ == '__main__':
     assert parse('http://example.com/?') == {}
     assert parse('http://example.com/?name=Dima') == {'name': 'Dima'}
 
-
-fffff = 112
