@@ -7,6 +7,11 @@ def parse(query: str) -> dict:
         words = re.split('[=&]', query[1])
         if words[-1] == '':
             words.pop()
+        for word in words:
+            if word.isdigit():
+                index = words.index(word)
+                words.pop(index)
+                words.insert(index, int(word))
         return {words[i]: words[i + 1] for i in range(0, len(words), 2)}
     return {}
 
@@ -17,6 +22,10 @@ if __name__ == '__main__':
     assert parse('http://example.com/') == {}
     assert parse('http://example.com/?') == {}
     assert parse('http://example.com/?name=Dima') == {'name': 'Dima'}
+    assert parse('https://example.com/path/to/page?name=ferret&color=purple&age=18') == {'name': 'ferret', 'color': 'purple', 'age': 18}
+    assert parse('https://example.com/path/to/page?name=ferret&color=purple&age=18') != {'name': 'ferret', 'color': 'purple', 'age': '18'}
+    assert type(parse('https://example.com/path/to/page?name=ferret&color=purple&age=18')) != int
+    assert type(parse('https://example.com/path/to/page?name=ferret&color=purple&age=18')) == dict
 
 
 def parse_cookie(query: str) -> dict:
