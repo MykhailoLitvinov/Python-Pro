@@ -11,7 +11,7 @@ def get_requirements():
 
 @app.route("/generate_users")
 def get_user():
-    num = request.args.get('num', '10')
+    num = request.args.get('num', '100')
     if num.isdigit():
         num = int(num)
     return generate_users(num)

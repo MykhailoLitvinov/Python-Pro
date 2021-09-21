@@ -3,7 +3,7 @@ import csv
 import requests
 
 
-def requirements():
+def requirements() -> str:
     open_file = open("requirements.txt", "r")
     req = ''
     for line in open_file.readlines():
@@ -11,7 +11,7 @@ def requirements():
     return req
 
 
-def generate_users(num: int = 10) -> str:
+def generate_users(num: int = 100) -> str:
     fake = Faker()
     user = ''
     for _ in range(num):
@@ -51,7 +51,7 @@ def mean(data: list) -> dict:
     return w_h
 
 
-def space():
+def space() -> str:
     r = requests.get('http://api.open-notify.org/astros.json')
     numb = r.json().get('number')
     return f'В настоящий момент в мире {numb} космонавнтов.'
