@@ -1,27 +1,30 @@
-from flask import Flask
-from utils import requirements
+from flask import Flask, request
+from utils import requirements, generate_users, mean, open_csv, space
 
 app = Flask(__name__)
 
 
 @app.route("/requirements")
-def hello_world():
+def get_requirements():
     return requirements()
 
 
-@app.route("/task_2")
-def hello_world():
-    return "<p>Hello, World!</p>"
+@app.route("/generate_users")
+def get_user():
+    num = request.args.get('num', '10')
+    if num.isdigit():
+        num = int(num)
+    return generate_users(num)
 
 
-@app.route("/task_3")
-def hello_world():
-    return "<p>Hello, World!</p>"
+@app.route("/mean")
+def get_mean():
+    return mean(open_csv())
 
 
-@app.route("/task_4")
-def hello_world():
-    return "<p>Hello, World!</p>"
+@app.route("/space")
+def get_space():
+    return space()
 
 
 if __name__ == '__main__':

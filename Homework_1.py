@@ -22,6 +22,7 @@ if __name__ == '__main__':
     assert parse('http://example.com/') == {}
     assert parse('http://example.com/?') == {}
     assert parse('http://example.com/?name=Dima') == {'name': 'Dima'}
+
     assert parse('https://example.com/path/to/page?name=ferret&color=purple&age=18') == {'name': 'ferret', 'color': 'purple', 'age': 18}
     assert parse('https://example.com/path/to/page?name=ferret&color=purple&age=18') != {'name': 'ferret', 'color': 'purple', 'age': '18'}
     assert type(parse('https://example.com/path/to/page?name=ferret&color=purple&age=18')) != int
